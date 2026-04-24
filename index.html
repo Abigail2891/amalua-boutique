@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amalua Boutique — Moda Femenina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf9f4;
+    --sand: #f2e8d8;
+    --latte: #e0cdb0;
+    --bark: #c4a882;
+    --soil: #a88a62;
+    --espresso: #7a6040;
+    --sage: #8a9e7e;
+    --terracotta: #d9bf9e;
+    --warm-white: #fffcf7;
+    --logo-beige: #d9bf9e;
+    --hero-bg: #f5ede0;
+    --hero-text: #7a6040;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--espresso);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--sand);
+    text-align: center;
+    padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .logo-area { flex: 1; text-align: center; display: flex; align-items: center; justify-content: center; }
+
+  .logo-text-wrap { text-align: center; }
+
+  .logo-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7a6040;
+    line-height: 1;
+    display: block;
+  }
+
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #a88a62;
+    font-weight: 300;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .header-wa-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .header-wa-btn:hover { background: #1db954; }
+  .header-wa-btn svg { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: #f5ede0;
+    color: #7a6040;
+    text-align: center;
+    padding: 3.5rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(217,191,158,0.2) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(217,191,158,0.15) 0%, transparent 60%);
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #a88a62;
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    color: #7a6040;
+  }
+
+  .hero p {
+    font-size: 13px;
+    color: #a88a62;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FILTERS ── */
+  .filter-section {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--sand);
+    padding: 0.9rem 1rem;
+  }
+
+  .filter-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    align-items: center;
+  }
+  .filter-inner::-webkit-scrollbar { display: none; }
+
+  .filter-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bark);
+    font-weight: 500;
+    margin-right: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .filter-btn {
+    border: 1px solid var(--latte);
+    background: transparent;
+    color: var(--soil);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .filter-btn:hover { background: var(--sand); border-color: var(--bark); }
+  .filter-btn.active {
+    background: var(--soil);
+    color: var(--cream);
+    border-color: var(--soil);
+  }
+
+  /* ── GRID ── */
+  .catalog-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--soil);
+  }
+
+  .section-count {
+    font-size: 11px;
+    color: var(--bark);
+    letter-spacing: 0.1em;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  /* ── PRODUCT CARD ── */
+  .product-card {
+    background: var(--warm-white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--sand);
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(46,31,14,0.12);
+  }
+
+  .card-img {
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(46,31,14,0.08));
+    pointer-events: none;
+  }
+
+  .badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    z-index: 2;
+  }
+  .badge-new { background: var(--soil); color: var(--cream); }
+  .badge-sale { background: var(--terracotta); color: #fff; }
+
+  .fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: rgba(250,247,242,0.9);
+    border: 1px solid var(--sand);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+    opacity: 0;
+    z-index: 2;
+    line-height: 1;
+  }
+  .product-card:hover .fav-btn { opacity: 1; }
+  .fav-btn.active { opacity: 1; background: #fff0f3; border-color: #e91e63; }
+
+  .card-body {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--sand);
+  }
+
+  .card-cat {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bark);
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--espresso);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .card-prices { display: flex; flex-direction: column; }
+
+  .card-price {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--soil);
+  }
+
+  .card-old-price {
+    font-size: 11px;
+    color: var(--bark);
+    text-decoration: line-through;
+    font-weight: 300;
+  }
+
+  .card-buy-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 7px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .card-buy-btn:hover { background: #1db954; transform: scale(0.97); }
+  .card-buy-btn svg { width: 12px; height: 12px; fill: #fff; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(46,31,14,0.6);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(3px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--warm-white);
+    border-radius: 16px;
+    max-width: 560px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--sand);
+    animation: modalIn 0.25s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-top {
+    display: flex;
+  }
+
+  .modal-img-wrap {
+    width: 200px;
+    min-height: 240px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    border-right: 1px solid var(--sand);
+  }
+
+  .modal-content {
+    flex: 1;
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-cat {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 6px;
+  }
+
+  .modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--espresso);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .modal-desc {
+    font-size: 13px;
+    color: var(--bark);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+
+  .modal-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .modal-price {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--soil);
+  }
+
+  .modal-old-price {
+    font-size: 14px;
+    color: var(--bark);
+    text-decoration: line-through;
+    font-weight: 300;
+  }
+
+  .size-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .sizes {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+
+  .size-chip {
+    border: 1px solid var(--latte);
+    background: transparent;
+    color: var(--soil);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 400;
+  }
+  .size-chip:hover { background: var(--sand); border-color: var(--bark); }
+  .size-chip.selected { background: var(--soil); color: var(--cream); border-color: var(--soil); }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    padding: 1rem 1.4rem;
+    border-top: 1px solid var(--sand);
+    background: var(--cream);
+  }
+
+  .btn-close {
+    flex: 1;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 11px;
+    background: transparent;
+    border: 1px solid var(--latte);
+    color: var(--bark);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .btn-close:hover { background: var(--sand); }
+
+  .btn-wa {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-wa:hover { background: #1db954; }
+  .btn-wa svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #f5ede0;
+    color: #a88a62;
+    text-align: center;
+    padding: 2.5rem 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: #7a6040;
+    margin-bottom: 8px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0.7;
+    margin-bottom: 16px;
+  }
+
+  .footer-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 20px;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  .footer-wa:hover { background: #1db954; }
+  .footer-wa svg { width: 15px; height: 15px; fill: #fff; }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 1rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--bark);
+  }
+
+  @media (max-width: 600px) {
+    .modal-top { flex-direction: column; }
+    .modal-img-wrap { width: 100%; min-height: 160px; border-right: none; border-bottom: 1px solid var(--sand); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .header-inner { flex-wrap: wrap; justify-content: center; }
+    .header-wa-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div style="width:120px"></div>
+    <div class="logo-area">
+      <div class="logo-text-wrap">
+        <span class="logo-main">Amalua</span>
+        <span class="logo-sub">Boutique</span>
+      </div>
+    </div>
+    <a class="header-wa-btn" href="https://wa.me/3755555856?text=Hola!%20Vi%20el%20catálogo%20de%20Amalua%20Boutique%20y%20quisiera%20consultar." target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Consultanos
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">✦ Colección Otoño 2026 ✦</span>
+    <h2>Prendas que cuentan<br>tu historia</h2>
+    <p>Envíos a todo el país</p>
+  </div>
+</section>
+
+<div class="filter-section">
+  <div class="filter-inner">
+    <span class="filter-label">Categoría:</span>
+    <button class="filter-btn active" data-cat="all">Todos</button>
+    <button class="filter-btn" data-cat="vestidos">Vestidos</button>
+    <button class="filter-btn" data-cat="blusas">Blusas</button>
+    <button class="filter-btn" data-cat="pantalones">Pantalones</button>
+    <button class="filter-btn" data-cat="conjuntos">Conjuntos</button>
+    <button class="filter-btn" data-cat="accesorios">Accesorios</button>
+  </div>
+</div>
+
+<section class="catalog-section">
+  <div class="section-header">
+    <div class="section-title" id="sectionTitle">Toda la colección</div>
+    <div class="section-count" id="sectionCount"></div>
